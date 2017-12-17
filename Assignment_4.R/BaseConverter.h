@@ -10,7 +10,34 @@
 #define BASECONVERTER_H
 using namespace std;
 
+#include <iostream>
+#ifndef BASECONVERTER_H
+#define BASECONVERTER_H
+using namespace std;
+
 // Name:NumberGenerator()
+// Parameter(s): int value, int base
+// Return: nothing
+// Label          Task                                  Goto
+// 01             (start: value, base)                  02
+// 02             [int rem = value/base]                03
+// 03             <if (value >=1)                       04,07
+// 04             [value = value / base]                05
+// 05             [NumberGenerator(value,base)]         06
+// 06             /cout (rem)/                          07
+// 07             (exit)
+
+void NumberGenerator(int value,int base){
+  int rem = value % base;
+ if (value >= 1){
+    value = value / base;
+    NumberGenerator(value, base);
+   }
+   cout << rem;
+}
+
+
+// Name:BaseConverter()
 // Parameter(s): int value, int base
 // Return: nothing
 // Label          Task                                 Goto
@@ -19,35 +46,12 @@ using namespace std;
 // 03             [NumberGenerator(value,base)]        04
 // 04             (exit)
 
-void NumberGenerator(int value, int base){
-  if ( (base >= 2) && (base <= 9) ) {
+void BaseConverter(int value, int base){
+  if ((base >= 2) && (base <= 9)) {
       NumberGenerator(value, base);
   }
-}
-// Name:BaseConverter()
-// Parameter(s): int value, int base
-// Return: nothing
-// Label          Task                                  Goto
-// 01             (start: value, base)                  02
-// 02             /int rem/                             03
-// 03             <if (value >=1)                       04,10
-// 04             [cout (value)]                        05
-// 05             /return/                              06
-// 06             [rem = value % base]                  07
-// 07             [baseConverter((value/base),base)]    08
-// 08             [NumberGenerator(value,base)]         09
-// 09             /cout (rem)/                          10
-// 10             (exit)
-
-void BaseConverter(int value,int base){
-    int rem;
-   if (value >= 1){
-      cout << value;
-      return;
-    }
-    rem = value % base;
-    BaseConverter((value / base), base);
-    NumberGenerator(value, base);
-    cout << rem;
+  else return;
 }
 #endif //BASECONVERTER_H
+
+
